@@ -11,14 +11,19 @@
 # Use the TensorFlow Serving base image
 FROM tensorflow/serving
 
-# Copy new files or directories and add to file system of container
-COPY / / 
+# Create a directory for the model configuration file
+RUN mkdir -p /models
 
-# Set the model name as an environment variable
-ENV MODEL_NAME=models
+# Copy the models to the respective directories
+COPY models/conv2d128 /models/conv2d128
+COPY models/customwgg31 /models/customwgg31
+COPY model_config.conf /models/model_config.conf
 
-# Expose port 8501
+# Set the model config file environment variable
+ENV MODEL_CONFIG_FILE=/models/model_config.conf
+
+# Expose the REST API port
 EXPOSE 8501
 
-# Run command
-RUN echo '#!/bin/bash'
+# Use the config file option when running TensorFlow Serving
+CMD ["tensorflow_model_server", "--port=8500", "--rest_api_port=8501", "--model_config_file=${MODEL_CONFIG_FILE}"]
