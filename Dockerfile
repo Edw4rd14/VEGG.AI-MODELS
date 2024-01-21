@@ -16,7 +16,7 @@ RUN mkdir -p /models
 
 # Copy the models to the respective directories
 COPY models/conv2d128 /models/conv2d128
-COPY models/customwgg31 /models/customwgg31
+COPY models/customvgg31 /models/customvgg31
 COPY model_config.conf /models/model_config.conf
 
 # Set the model config file environment variable
