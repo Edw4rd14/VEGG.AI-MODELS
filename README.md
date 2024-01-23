@@ -1,12 +1,10 @@
 # ==================================================
 # ST1516 DEVOPS AND AUTOMATION FOR AI CA2 ASSIGNMENT
-# ==================================================
-# NAME: EDWARD TAN YUAN CHONG
-# CLASS: DAAA/FT/2B/04
-# ADM NO: 2214407
-# ==================================================
-# REPOSITORY NAME: CA2-DAAA2B04-2214407-EDWARD
-# ==================================================
+## CA2-DAAA2B04-2214407-EDWARD
+------------------------------
+NAME: EDWARD TAN YUAN CHONG
+CLASS: DAAA/FT/2B/04
+ADM NO: 2214407
 
 <u>Branches:</u>
 
@@ -23,5 +21,9 @@ This is my GitLab repository for the DevOps and Automation for AI (DOAA) CA2 Pro
 - CA2_Models_Server => Model Development
 
 - CA2_Models_Serving => TensorFlow Serving
+
+<u>Docker Networks:</u>
+
+- ca2_dl_network => Connects CA2_Models_Sever and CA2_Models_Serving
 
 🤓 Thank you for visiting!

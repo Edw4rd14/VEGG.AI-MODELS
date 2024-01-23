@@ -26,4 +26,8 @@ ENV MODEL_CONFIG_FILE=/models/model_config.conf
 EXPOSE 8501
 
 # Use the config file option when running TensorFlow Serving
-CMD ["tensorflow_model_server", "--port=8500", "--rest_api_port=8501", "--model_config_file=/models/model_config.conf"]
+CMD ["tensorflow_model_server", "--rest_api_port=8501", "--model_config_file=/models/model_config.conf"]
+
+
+
+

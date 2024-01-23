@@ -11,7 +11,6 @@
 # Import modules
 import pytest
 import requests
-import base64
 import json
 import numpy as np
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -64,6 +63,7 @@ print(f'Length of test_label array: {len(y_test_31)}.')
 server_url_31 = "http://ca2_models_serving:8501/v1/models/customvgg31:predict"
 server_url_128 = "http://ca2_models_serving:8501/v1/models/conv2d128:predict"
 
+
 def make_prediction_31(instances):
     data = json.dumps({"signature_name": "serving_default","instances": instances.tolist()}) 
     headers = {"content-type": "application/json"}
@@ -78,13 +78,15 @@ def make_prediction_128(instances):
     predictions = json.loads(json_response.text)['predictions']
     return predictions
 
-def test_prediction_31():
-    predictions = make_prediction_31(X_test_31[0:4]) 
+@pytest.mark.parametrize('indexes',[[0,4],[50,54],[133,137]])
+def test_prediction_31(indexes):
+    predictions = make_prediction_31(X_test_31[indexes[0]:indexes[1]]) 
     for i, pred in enumerate(predictions):
         assert y_test_31[i] == np.argmax(pred)
 
-def test_prediction_128():
-    predictions = make_prediction_128(X_test_128[0:4]) 
+@pytest.mark.parametrize('indexes',[[0,4],[15,19],[192,196]])
+def test_prediction_128(indexes):
+    predictions = make_prediction_128(X_test_128[indexes[0]:indexes[1]]) 
     for i, pred in enumerate(predictions):
         print(y_test_128[i] == np.argmax(pred))
         assert y_test_128[i] == np.argmax(pred)
